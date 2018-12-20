@@ -35,11 +35,11 @@
             lg8
             mb-3
         >
-            <h1 class="display-2 font-weight-bold mb-3">
-                主脑解密
-            </h1>
+            <!-- <h1 class="title font-weight-bold mb-3">
+                主脑解谜
+            </h1> -->
             <p class="subheading font-weight-regular">
-                主脑解密是将WoW8.1版本新加入的解密坐骑中一些解密步骤独立出来的小游戏集合
+                主脑解谜是将WoW8.1版本新加入的解谜坐骑中一些解谜步骤独立出来的小游戏集合
             </p>
         </v-flex>
     </v-layout>
@@ -48,9 +48,11 @@
             v-for="card in cards"
             v-bind="{ [`xs${card.flex}`]: true }"
             :key="card.title"
-            mb-3
+            mb-4
         >
-            <v-card>
+            <v-card
+                :to="{name: card.viewName}"
+            >
                 <v-img
                     :src="card.src"
                     height="200px"
@@ -83,16 +85,19 @@ export default {
                     title: '星座迷踪',
                     src: require('@/assets/zodiac-mystery.jpg'),
                     flex: 12,
+                    viewName: 'ZodiacMystery'
                 },
                 {
                     title: '闪转腾挪',
                     src: require('@/assets/jumping-puzzle.jpg'),
-                    flex: 12
+                    flex: 12,
+                    viewName: 'JumpingPuzzle'
                 },
                 {
                     title: '奥术熔岩',
                     src: require('@/assets/arcane-lava.jpg'),
-                    flex: 12
+                    flex: 12,
+                    viewName: 'ArcaneLava'
                 }
             ]
         }
