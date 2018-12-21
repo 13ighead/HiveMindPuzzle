@@ -1,7 +1,8 @@
 <template>
 <div
-class="black--text"
-:style="chessmanStyle"
+    class="black--text"
+    :style="chessmanStyle"
+    @click="click()"
 >
     <div class="chessman-container">
         <v-icon class="stellar-refractor-icon">{{ params.icon }}</v-icon>
@@ -11,6 +12,8 @@ class="black--text"
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import mixin from './mixin'
 
 export default {
@@ -20,6 +23,20 @@ export default {
         params() {
             return this.$store.getters.getChessmanByPos(this.x, this.y);
         }
+    },
+    methods: {
+        click() {
+            console.log(this.x, this.y)
+
+            this.swtichZodiacTypeWithStellarRefractor({
+                x: this.x,
+                y: this.y,
+                type: this.params.value
+            })
+        },
+        ...mapActions([
+            'swtichZodiacTypeWithStellarRefractor'
+        ])
     }
 }
 </script>

@@ -1,7 +1,6 @@
 <template>
 <div
     :style="chessmanStyle"
-    @click="click()"
 >
     <div class="chessman-container"></div>
 </div>  
