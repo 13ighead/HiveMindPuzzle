@@ -1,11 +1,11 @@
 <template>
 <div
     class="black--text"
-    :style="chessmanStyle"
+    :class="this.params.className"
     @click="click()"
 >
     <div class="chessman-container">
-        <v-icon class="stellar-refractor-icon">{{ params.icon }}</v-icon>
+        <v-icon class="stellar-refractor-icon white--text">{{ params.icon }}</v-icon>
     </div>
    
 </div>

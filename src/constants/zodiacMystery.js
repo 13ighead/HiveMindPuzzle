@@ -44,9 +44,7 @@ export const zodiacType = {
         type: 'Zodiac',
         value: 'R',
         nextType: 'G',
-        style: {
-            backgroundColor: '#f00'
-        }
+        className: 'red darken-4'
     },
     'G': {
         name: '绿',
@@ -54,9 +52,7 @@ export const zodiacType = {
         type: 'Zodiac',
         value: 'G',
         nextType: 'Y',
-        style: {
-            backgroundColor: '#0f0'
-        }
+        className: 'green darken-1'
     },
     'Y': {
         name: '黄',
@@ -64,9 +60,7 @@ export const zodiacType = {
         type: 'Zodiac',
         value: 'Y',
         nextType: 'W',
-        style: {
-            backgroundColor: '#ff0'
-        }
+        className: 'yellow lighten-1'
     },
     'W': {
         name: '白',
@@ -74,9 +68,7 @@ export const zodiacType = {
         type: 'Zodiac',
         value: 'W',
         nextType: 'R',
-        style: {
-            backgroundColor: '#fff'
-        }
+        className: 'grey lighten-4'
     }
 }
 
@@ -87,9 +79,7 @@ export const stellarRefractorType = {
         type: 'StellarRefractor',
         value: '+',
         icon: 'add',
-        style: {
-            backgroundColor: '#aaa'
-        }
+        className: 'blue-grey darken-1'
     },
     'x': {
         name: '交叉',
@@ -97,19 +87,15 @@ export const stellarRefractorType = {
         type: 'StellarRefractor',
         value: 'x',
         icon: 'clear',
-        style: {
-            backgroundColor: '#aaa'
-        }
+        className: 'blue-grey darken-1'
     },
     'o': {
         name: '周围',
         originName: 'Round',
         type: 'StellarRefractor',
         value: 'o',
-        icon: 'panorama_fish_eye',
-        style: {
-            backgroundColor: '#aaa'
-        }
+        icon: 'crop_square',
+        className: 'blue-grey darken-1'
     }
 }
 
@@ -118,9 +104,7 @@ export const otherType = {
         name: '空',
         type: 'Block',
         value: '-',
-        style: {
-            backgroundColor: '#000'
-        }
+        className: 'grey darken-4'
     }
 }
 

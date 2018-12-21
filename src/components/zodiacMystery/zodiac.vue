@@ -1,6 +1,6 @@
 <template>
 <div
-    :style="chessmanStyle"
+    :class="this.params.className"
 >
     <div class="chessman-container"></div>
 </div>  

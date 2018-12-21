@@ -41,7 +41,7 @@ export default {
     height: 0;
     width: 100%;
     padding-bottom: 100%;
-    box-shadow: 0 0 0px 0.5px #000;
+    border-radius: 100%;
 }
 
 .chessman-container {

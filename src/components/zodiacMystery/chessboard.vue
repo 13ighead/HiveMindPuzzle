@@ -1,5 +1,5 @@
 <template>
-<v-layout text-xs-center wrap class="chessboard">
+<v-layout text-xs-center wrap class="chessboard grey darken-4">
     <template v-for="x in size.x">
         <template v-for="y in size.y">
             <chessman :key="x * (size.x) + y" :x="x-1" :y="y-1" />
