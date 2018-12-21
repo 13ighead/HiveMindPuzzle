@@ -1,8 +1,6 @@
 <template>
-<div
-    :class="this.params.className"
->
-    <div class="chessman-container"></div>
+<div>
+    <div class="chessman-container" :class="this.params.className"></div>
 </div>  
 </template>
 

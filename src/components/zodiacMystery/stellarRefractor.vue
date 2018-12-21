@@ -1,10 +1,9 @@
 <template>
 <div
     class="black--text"
-    :class="this.params.className"
     @click="click()"
 >
-    <div class="chessman-container">
+    <div class="chessman-container" :class="{[this.params.className]: true, 'selected': params.selected}">
         <v-icon class="stellar-refractor-icon white--text">{{ params.icon }}</v-icon>
     </div>
    
@@ -26,16 +25,33 @@ export default {
     },
     methods: {
         click() {
-            console.log(this.x, this.y)
+            console.log(this.x, this.y, this.params.selected)
+            if (!this.params.selected) {
+                this.toggleStellarRefractor({
+                    x: this.x,
+                    y: this.y
+                })
 
-            this.swtichZodiacTypeWithStellarRefractor({
-                x: this.x,
-                y: this.y,
-                type: this.params.value
-            })
+                this.swtichZodiacTypeWithStellarRefractor({
+                    x: this.x,
+                    y: this.y,
+                    type: this.params.value,
+                    actionType: 'highlight'
+                })
+            }
+            else {
+                this.swtichZodiacTypeWithStellarRefractor({
+                    x: this.x,
+                    y: this.y,
+                    type: this.params.value
+                })
+            }
+
+            
         },
         ...mapActions([
-            'swtichZodiacTypeWithStellarRefractor'
+            'swtichZodiacTypeWithStellarRefractor',
+            'toggleStellarRefractor'
         ])
     }
 }

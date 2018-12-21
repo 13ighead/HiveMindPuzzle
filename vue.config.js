@@ -1,4 +1,3 @@
 module.exports = {
-    baseUrl: '/hivemind-puzzle',
-    filenameHashing: false,
+    baseUrl: '/hivemind-puzzle'
 }

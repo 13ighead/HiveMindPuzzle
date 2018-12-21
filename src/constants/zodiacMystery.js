@@ -44,7 +44,8 @@ export const zodiacType = {
         type: 'Zodiac',
         value: 'R',
         nextType: 'G',
-        className: 'red darken-4'
+        className: 'red darken-4',
+        highlight: false
     },
     'G': {
         name: '绿',
@@ -52,7 +53,8 @@ export const zodiacType = {
         type: 'Zodiac',
         value: 'G',
         nextType: 'Y',
-        className: 'green darken-1'
+        className: 'green darken-1',
+        highlight: false
     },
     'Y': {
         name: '黄',
@@ -60,7 +62,8 @@ export const zodiacType = {
         type: 'Zodiac',
         value: 'Y',
         nextType: 'W',
-        className: 'yellow lighten-1'
+        className: 'yellow lighten-1',
+        highlight: false
     },
     'W': {
         name: '白',
@@ -68,7 +71,8 @@ export const zodiacType = {
         type: 'Zodiac',
         value: 'W',
         nextType: 'R',
-        className: 'grey lighten-4'
+        className: 'grey lighten-4',
+        highlight: false
     }
 }
 
@@ -79,7 +83,8 @@ export const stellarRefractorType = {
         type: 'StellarRefractor',
         value: '+',
         icon: 'add',
-        className: 'blue-grey darken-1'
+        className: 'blue-grey darken-1',
+        selected: false
     },
     'x': {
         name: '交叉',
@@ -87,7 +92,8 @@ export const stellarRefractorType = {
         type: 'StellarRefractor',
         value: 'x',
         icon: 'clear',
-        className: 'blue-grey darken-1'
+        className: 'blue-grey darken-1',
+        selected: false
     },
     'o': {
         name: '周围',
@@ -95,7 +101,8 @@ export const stellarRefractorType = {
         type: 'StellarRefractor',
         value: 'o',
         icon: 'crop_square',
-        className: 'blue-grey darken-1'
+        className: 'blue-grey darken-1',
+        selected: false
     }
 }
 

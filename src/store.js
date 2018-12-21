@@ -5,6 +5,7 @@ import {
     chessboard,
     chessboardSize,
     zodiacType,
+    stellarRefractorType,
     chessmanType
 } from '@/constants/zodiacMystery'
 
@@ -32,10 +33,56 @@ export default new Vuex.Store({
         toggleDarkMode (state) {
             state.isDark = !state.isDark
         },
+        toggleStellarRefractor (state, pos) {
+            const index = pos.x * chessboardSize.x + pos.y
+            if (Object.keys(stellarRefractorType).indexOf(state.chessboard[index].value) == -1) {
+                return false;
+            }
+
+            const selectedIndex = state.chessboard.findIndex(item => {
+                return item.selected
+            })
+
+            if (selectedIndex >= 0) {
+                const selectedParams = Object.assign({}, state.chessboard[selectedIndex], {
+                    selected: false
+                })
+
+                Vue.set(state.chessboard, selectedIndex, selectedParams)
+            }
+
+            const targetTypeParams = Object.assign({}, state.chessboard[index], {
+                selected: !state.chessboard[index].selected
+            })
+
+            Vue.set(state.chessboard, index, targetTypeParams)
+        },
         switchZodiacType (state, pos) {
             const index = pos.x * chessboardSize.x + pos.y
             const targetType = state.chessboard[index].nextType
             const targetTypeParams = zodiacType[targetType]
+            if (Object.keys(zodiacType).indexOf(state.chessboard[index].value) == -1) {
+                return false;
+            }
+            if (targetTypeParams) {
+                Vue.set(state.chessboard, index, targetTypeParams)
+            }
+        },
+        unhighlightAllZodiacType (state) {
+            state.chessboard.map((item, index) => {
+                if (item.highlight) {
+                    Vue.set(state.chessboard, index, Object.assign({}, item, {
+                        highlight: false
+                    }))
+                }
+            })
+        },
+        highlightZodiacType (state, pos) {
+            const index = pos.x * chessboardSize.x + pos.y
+            const targetTypeParams = Object.assign({}, state.chessboard[index], {
+                highlight: true
+            })
+
             if (Object.keys(zodiacType).indexOf(state.chessboard[index].value) == -1) {
                 return false;
             }
@@ -51,11 +98,22 @@ export default new Vuex.Store({
         toggleDarkMode ({ commit }) {
             commit('toggleDarkMode')
         },
+        toggleStellarRefractor ({ commit }, pos) {
+            commit('toggleStellarRefractor', pos)
+        },
         switchZodiacType ({ commit }, pos) {
             commit('switchZodiacType', pos)
         },
-        swtichZodiacTypeWithStellarRefractor ({ commit, state }, { x, y, type }) {
+        unhighlightAllZodiacType ({ commit }) {
+            commit('unhighlightAllZodiacType');
+        },
+        swtichZodiacTypeWithStellarRefractor ({ commit, state }, { x, y, type, actionType }) {
             let index;
+            let mutationType = (actionType === 'highlight') ? 'highlightZodiacType' : 'switchZodiacType'
+
+            if (actionType === 'highlight') {
+                commit('unhighlightAllZodiacType');
+            }
             switch (type) {
                 case '+':
                     for (let i = x - 1; i >= 0; i--) {
@@ -63,11 +121,8 @@ export default new Vuex.Store({
                         if (Object.keys(zodiacType).indexOf(state.chessboard[index].value) == -1) {
                             break;
                         }
-                        console.log({
-                            x: i,
-                            y: y
-                        })
-                        commit('switchZodiacType', {
+
+                        commit(mutationType, {
                             x: i,
                             y: y
                         })
@@ -77,12 +132,8 @@ export default new Vuex.Store({
                         if (Object.keys(zodiacType).indexOf(state.chessboard[index].value) == -1) {
                             break;
                         }
-                        
-                        console.log({
-                            x: i,
-                            y: y
-                        })
-                        commit('switchZodiacType', {
+
+                        commit(mutationType, {
                             x: i,
                             y: y
                         })
@@ -92,12 +143,8 @@ export default new Vuex.Store({
                         if (Object.keys(zodiacType).indexOf(state.chessboard[index].value) == -1) {
                             break;
                         }
-                        
-                        console.log({
-                            x: x,
-                            y: j
-                        })
-                        commit('switchZodiacType', {
+
+                        commit(mutationType, {
                             x: x,
                             y: j
                         })
@@ -108,11 +155,7 @@ export default new Vuex.Store({
                             break;
                         }
                         
-                        console.log({
-                            x: x,
-                            y: j
-                        })
-                        commit('switchZodiacType', {
+                        commit(mutationType, {
                             x: x,
                             y: j
                         })
@@ -152,11 +195,7 @@ export default new Vuex.Store({
                                 break;
                             }
                             
-                            console.log({
-                                x: i,
-                                y: j
-                            })
-                            commit('switchZodiacType', {
+                            commit(mutationType, {
                                 x: i,
                                 y: j
                             })
@@ -167,14 +206,11 @@ export default new Vuex.Store({
                     for (let i = x - 1; i <= x + 1; i++) {
                         for (let j = y - 1; j <= y + 1; j++) {
                             index = i * chessboardSize.x + j
-                            if ((index === x * chessboardSize.x + y) || (Object.keys(zodiacType).indexOf(state.chessboard[index].value) == -1)) {
+                            if ((index < 0) || (index === x * chessboardSize.x + y) || (Object.keys(zodiacType).indexOf(state.chessboard[index].value) == -1)) {
                                 continue;
                             }
-                            console.log({
-                                x: i,
-                                y: j
-                            })
-                            commit('switchZodiacType', {
+
+                            commit(mutationType, {
                                 x: i,
                                 y: j
                             })
