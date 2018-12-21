@@ -191,7 +191,7 @@ export default new Vuex.Store({
                             i = i + dx;
                             j = j + dy;
                             index = i * chessboardSize.x + j
-                            if (!state.chessboard[index] || (Object.keys(zodiacType).indexOf(state.chessboard[index].value) == -1)) {
+                            if ((i < 0) || (j < 0) || !state.chessboard[index] || (Object.keys(zodiacType).indexOf(state.chessboard[index].value) == -1)) {
                                 break;
                             }
                             
@@ -206,7 +206,7 @@ export default new Vuex.Store({
                     for (let i = x - 1; i <= x + 1; i++) {
                         for (let j = y - 1; j <= y + 1; j++) {
                             index = i * chessboardSize.x + j
-                            if ((index < 0) || (index === x * chessboardSize.x + y) || (Object.keys(zodiacType).indexOf(state.chessboard[index].value) == -1)) {
+                            if ((i < 0) || (j < 0) || (index < 0) || (index === x * chessboardSize.x + y) || (Object.keys(zodiacType).indexOf(state.chessboard[index].value) == -1)) {
                                 continue;
                             }
 
