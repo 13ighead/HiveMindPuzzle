@@ -64,8 +64,11 @@ export default new Vuex.Store({
             if (Object.keys(zodiacType).indexOf(state.chessboard[index].value) == -1) {
                 return false;
             }
+
             if (targetTypeParams) {
-                Vue.set(state.chessboard, index, targetTypeParams)
+                Vue.set(state.chessboard, index, Object.assign({}, targetTypeParams, {
+                    highlight: true
+                }))
             }
         },
         unhighlightAllZodiacType (state) {

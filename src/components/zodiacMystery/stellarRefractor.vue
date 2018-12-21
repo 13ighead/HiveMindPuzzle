@@ -46,8 +46,6 @@ export default {
                     type: this.params.value
                 })
             }
-
-            
         },
         ...mapActions([
             'swtichZodiacTypeWithStellarRefractor',
